@@ -1,0 +1,22 @@
+{
+  - ID: 210450
+  + ID: 133777
+  - email: smith@mail.com
+  + email: peter@mail.com
+  - follow: false
+  + follow: true
+    host: hexlet.io
+  - login: admin
+  + login: user
+  - name: John Smith
+  + name: Peter Ivanov
+  - online: false
+  + online: true
+  - password: root
+  + password: 1234
+  + phone: 5550505
+  + proxy: 123.234.53.22
+  - timeout: null
+  + timeout: 20
+  + verbose: true
+}

@@ -1,0 +1,12 @@
+{
+  + ID: 133777
+  + email: peter@mail.com
+  + follow: true
+  + login: user
+  + name: Peter Ivanov
+  - online: false
+  + online: true
+  + password: 1234
+  + phone: 5550505
+  + verbose: true
+}

@@ -1,0 +1,9 @@
+{
+    ID: 210450
+    email: smith@mail.com
+    login: admin
+    name: John Smith
+    online: true
+    password: root
+    phone: 5550505
+}

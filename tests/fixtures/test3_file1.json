@@ -1,0 +1,11 @@
+{
+  "ID": 210450,
+  "login": "admin",
+  "name": "John Smith",
+  "password": "root",
+  "email": "smith@mail.com",
+  "online": false,
+  "host": "hexlet.io",
+  "timeout": null,
+  "follow": false
+}
