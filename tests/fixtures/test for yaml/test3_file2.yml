@@ -1,0 +1,12 @@
+ID: 133777
+login: user
+name: Peter Ivanov
+password: 1234
+phone: 5550505
+email: peter@mail.com
+online: true
+host: hexlet.io
+proxy: 123.234.53.22
+follow: true
+timeout: 20
+verbose: true
