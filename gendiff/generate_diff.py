@@ -13,8 +13,6 @@ def generate_diff(file1, file2):
         generate_different: string changes of two json files
     """
     generate_different = []
-    print(file1)
-    print(file2)
     if file1.endswith('.json') and file1.endswith('.json'):
         file1 = json.load(open(file1))
         file2 = json.load(open(file2))
