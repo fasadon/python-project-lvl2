@@ -5,11 +5,11 @@ import yaml
 
 
 def open_file(file1,file2):
-    if file1.endswith('.json') and file1.endswith('.json'):
+    if file1.endswith('.json') and file2.endswith('.json'):
         file1 = json.load(open(file1))
         file2 = json.load(open(file2))
         encoder = json.dumps
-    elif file1.endswith('.yml') and file1.endswith('.yml'):
+    elif file1.endswith('.yml') and file2.endswith('.yml'):
         file1 = yaml.safe_load(open(file1))
         file2 = yaml.safe_load(open(file2))
         encoder = yaml.dump
