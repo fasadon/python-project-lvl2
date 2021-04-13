@@ -3,32 +3,25 @@ import json
 import yaml
 
 
-
-def open_file(file1,file2):
-    if file1.endswith('.json') and file2.endswith('.json'):
-        file1 = json.load(open(file1))
-        file2 = json.load(open(file2))
-        encoder = json.dumps
-    elif file1.endswith('.yml') and file2.endswith('.yml'):
-        file1 = yaml.safe_load(open(file1))
-        file2 = yaml.safe_load(open(file2))
-        encoder = yaml.dump
-    return file1, file2, encoder
-
-
-
 def generate_diff(file1, file2):
     """Do this flat json file comparison.
 
     Args:
-        file1: json file
-        file2: json file
+        file1: json or yml file
+        file2: json or yml file
 
     Returns:
         generate_different: string changes of two json files
     """
     generate_different = []
-    file1, file2, encoder = open_file(file1, file2)
+    if file1.endswith('.json') and file2.endswith('.json'):
+        file1 = json.load(open(file1))
+        file2 = json.load(open(file2))
+        encoder = json.dumps
+    else:
+        file1 = yaml.safe_load(open(file1))
+        file2 = yaml.safe_load(open(file2))
+        encoder = yaml.dump
     file1 = set(file1.items())
     file2 = set(file2.items())
     for key, value in file1 & file2:
