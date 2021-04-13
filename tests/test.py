@@ -47,3 +47,33 @@ def test_four_yaml():
     x = generate_diff('tests/fixtures/test for yaml/test4_file1.yml', 'tests/fixtures/test for yaml/test4_file2.yml')
     y = open("tests/fixtures/test for json/test4.txt", "r")
     assert x == y.read()
+    
+def test_five_json():
+    x = generate_diff('tests/fixtures/test for json/test5_file1.json', 'tests/fixtures/test for json/test5_file2.json')
+    y = open("tests/fixtures/test for json/test5.txt", "r")
+    assert x == y.read()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
