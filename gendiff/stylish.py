@@ -1,4 +1,8 @@
+from gendiff.generate_diff import opener
+import json
 
 
-def stylish(file1,file2):
-    return
+
+
+
+

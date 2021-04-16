@@ -1,27 +1,24 @@
 """Module flat json file comparison."""
 import json
+
 import yaml
 
-
-def not_changed(file1,file2,encoder):
-    lst = []
-    for key, value in file1 & file2:
-        lst.append((' ', '{0}:'.format(key), str(encoder.get(value,value))))
-    return lst
-
-
-def deleted(file1,file2,encoder):
-    lst = []
-    for key, value in file1 - file2:
-        lst.append(('-', '{0}:'.format(key), str(encoder.get(value,value))))
-    return lst
+encoder = {
+    True: 'true',
+    False: 'false',
+    None: 'null',
+}
 
 
-def new(file1,file2,encoder):
-    lst = []
-    for key, value in file2 - file1:
-        lst.append(('+', '{0}:'.format(key), str(encoder.get(value,value))))
-    return lst
+
+def opener(file1,file2):
+    if file1.split('.')[1] == 'json' and file2.split('.')[1] == 'json':
+        file1 = json.load(open(file1))
+        file2 = json.load(open(file2))
+    elif file1.split('.')[1] == 'yml' and file2.split('.')[1] == 'yml':
+        file1 = yaml.safe_load(open(file1))
+        file2 = yaml.safe_load(open(file2))
+    return file1, file2
 
 
 def generate_diff(file1, file2):
@@ -32,26 +29,22 @@ def generate_diff(file1, file2):
         file2: json or yml file
 
     Returns:
-        generate_different: string changes of two json files
+        different: string changes of two json files
     """
-    generate_different = []
-    encoder = {
-        True: 'true',
-        False: 'false',
-        None: 'null'
-    }
-    if file1.endswith('.json') and file2.endswith('.json'):
-        file1 = json.load(open(file1))
-        file2 = json.load(open(file2))
-    else:
-        file1 = yaml.safe_load(open(file1))
-        file2 = yaml.safe_load(open(file2))
+    different = []
+    file1, file2 = opener(file1, file2)
     file1 = set(file1.items())
     file2 = set(file2.items())
-    generate_different.extend(not_changed(file1,file2,encoder))
-    generate_different.extend(deleted(file1,file2,encoder))
-    generate_different.extend(new(file1,file2,encoder))
-    generate_different.sort(key=lambda item: item[1])
-    generate_different = map(' '.join, generate_different)
-    generate_different = '{\n  ' + '\n  '.join(generate_different) + '\n}\n'
-    return generate_different
+    for key, value in file1 & file2:
+        value = str(encoder.get(value, value))
+        different.append((' ', '{0}:'.format(key), value))
+    for key, value in file1 - file2:
+        value = str(encoder.get(value, value))
+        different.append(('-', '{0}:'.format(key), value))
+    for key, value in file2 - file1:
+        value = str(encoder.get(value, value))
+        different.append(('+', '{0}:'.format(key), value))
+    different.sort(key=lambda item: item[1])
+    different = map(' '.join, different)
+    different = '{\n  ' + '\n  '.join(different) + '\n}\n'
+    return different
